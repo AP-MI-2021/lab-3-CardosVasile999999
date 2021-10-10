@@ -1,4 +1,4 @@
-def function(rf):
+'''def function(rf):
     if rf % 2 == 0:
         return 1
     else:
@@ -6,8 +6,7 @@ def function(rf):
 
 
 def main():
-    t = int(input('numarul este'))
-    s = function(t)
-    print(f'NUMARUL ESTE {s}')
+    print("hello world ")
     if __name__ == '__main__':
-        main()
+        main()'''
+print()
