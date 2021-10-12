@@ -82,20 +82,38 @@ def test_get_longest_all_palindromes(lst: list[int]):
 
 
 
-'''def numar_biti_unu(n):
+def numar_biti_unu(n):
+    '''
+        Functie ajutatoare care determina cati biti de unu are un numar
+        Input: un numar natural
+        Output: numarul de biti egali cu 1 al numarului respectiv
+    '''
     k=0
     while n:
-        if n % 2 == 1:
-            k+=1
+        if n%2==1:
+            k=k+1
     n=n//2
     return k
-'''
+
+
+
+def test_numar_biti_unu():
+    '''
+    functie test pentru numar_biti_unu
+    '''
+    assert numar_biti_unu(19)==3
+    assert numar_biti_unu(23)==4
+    assert numar_biti_unu(2)==1
+    assert numar_biti_unu(10110)==10
+    assert numar_biti_unu(200)==3
 
 
 
 
-'''def get_longest_same_bit_counts(lst: list[int]):
-    n = len(lst[])
+
+
+def get_longest_same_bit_counts(lst: list[int]):
+    n = len(lst)
     res = []
     for s in range(n):
         for d in range(s, n):
@@ -108,7 +126,7 @@ def test_get_longest_all_palindromes(lst: list[int]):
                 if d-s+1>len(res):
                     res=lst[s:d+1]
 
-    return res '''
+    return res
 
 
 
@@ -122,7 +140,7 @@ def main():
     while True:
         print('1. Citire lista: ')
         print('2. Cea mai lunga subsecventa de palindroame')
-        print('3. Optiunea 3')
+        print('3. Cea mai lunga subsecventa cu termeni ce au acelasi numar de biti de 1')
         print('x. Exit')
         optiune = input('Optiunea: ')
         if optiune == '1':
@@ -131,7 +149,8 @@ def main():
             palindrom = get_longest_all_palindromes(lst)
             print(palindrom)
         elif optiune == '3':
-            pass
+            bit = get_longest_same_bit_counts(lst)
+            print(bit)
         elif optiune == 'x':
             break
         else:
