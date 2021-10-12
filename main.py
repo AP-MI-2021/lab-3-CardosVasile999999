@@ -35,6 +35,8 @@ def is_palindrom(n):
 def test_is_palindrom(n):
     '''
     Functie de test pentru functia _is_palindrom
+    input: n
+    out: boolean variable
     '''
     assert is_palindrom(232) == True
     assert is_palindrom(12) == False
@@ -62,7 +64,7 @@ def get_longest_all_palindromes(lst: list[int]):
                 if is_palindrom(num) == False:
                     palindrom = False
                     break
-            if palindrom:
+            if palindrom == True:
                 if d-s+1>len(res):
                     res=lst[s:d+1]
 
@@ -80,58 +82,77 @@ def test_get_longest_all_palindromes(lst: list[int]):
     assert get_longest_all_palindromes([123, 123, 5432, 5432,]) == []
 
 
-
-
-def numar_biti_unu(n):
+'''
+    functie ajutatoare ca sa verificam daca cifrele unui numar sun in ordine descrescatoare
+    input n
+    output boolean variable
     '''
-        Functie ajutatoare care determina cati biti de unu are un numar
-        Input: un numar natural
-        Output: numarul de biti egali cu 1 al numarului respectiv
+def cifre_descrescatoare(n):
     '''
-    k=0
+    functie ajutatoare care determina daca cifrele unui numar sunt in ordine descrescatoare
+    '''
+    if n<10:
+        return False
+
+    k = n % 10
+    n = n // 10
     while n:
-        if n%2==1:
-            k=k+1
-    n=n//2
-    return k
+
+        if n%10 < k:
+            return False
+
+        k = n % 10
+        n = n // 10
+
+    return True
 
 
 
-def test_numar_biti_unu():
+def test_cifre_descrescatoare():
     '''
-    functie test pentru numar_biti_unu
+    functie test pentru  cifre_descrescatoare
     '''
-    assert numar_biti_unu(19)==3
-    assert numar_biti_unu(23)==4
-    assert numar_biti_unu(2)==1
-    assert numar_biti_unu(10110)==10
-    assert numar_biti_unu(200)==3
+    assert cifre_descrescatoare(54321)==True
+    assert cifre_descrescatoare(123)==False
+    assert cifre_descrescatoare(1)==False
+    assert cifre_descrescatoare(32)==True
+    assert cifre_descrescatoare(531)==True
+    assert cifre_descrescatoare(69)==True
 
 
-
-
-
-
-def get_longest_same_bit_counts(lst: list[int]):
+def get_longest_digit_count_desc(lst: list[int]):
     '''
-    Problema 11. Determinarea celei mai lungi subsecvente de termeni care au acelasi numar de biti 1
-    Input: O lista de intregi
-    Output: cea mai lunga subsecventa de de termeni care au acelasi numar de biti 1
+    Problema 18:
+    Functia determina cea mai lunga subsecventa cu toate numerele care au cifrele in ordine descrescatoare
+    Input: o liste cu numere intregi
+    Output: cea mai lunga subsecventa de numere avand cifrele in ordine descrescatoare
     '''
     n = len(lst)
     res = []
     for s in range(n):
         for d in range(s, n):
-            bit = True
+            des = True
             for num in lst[s:d+1]:
-                if is_palindrom(num) == False:
-                    bit = False
+                if cifre_descrescatoare(num) == False:
+                    des = False
                     break
-            if bit:
+            if des:
                 if d-s+1>len(res):
                     res=lst[s:d+1]
 
     return res
+
+
+
+def test_get_longest_digit_count_desc():
+    '''
+    functia test pentru get_longest_digit_count_desc():
+    '''
+    assert get_longest_digit_count_desc([1, 2, 3, 543, 432, 321, 7, 123, 234, 543, 43])==[543, 432, 321]
+    assert get_longest_digit_count_desc([1, 2, 3, 4,])==[]
+    assert get_longest_digit_count_desc([1, 2, 3, 43])==[43]
+    assert get_longest_digit_count_desc([54, 43, 1, 2, 54, 21])==[54, 43]
+    assert get_longest_digit_count_desc([54, 43, 2, 3, 98, 76, 43])==[98, 76, 43]
 
 
 
@@ -154,15 +175,15 @@ def main():
             palindrom = get_longest_all_palindromes(lst)
             print(palindrom)
         elif optiune == '3':
-            bit = get_longest_same_bit_counts(lst)
-            print(bit)
+            cif = get_longest_digit_count_desc(lst)
+            print(cif)
         elif optiune == 'x':
             break
         else:
             print('Optiune invalida')
 
 
-    test_numar_biti_unu()
+
     test_is_palindrom()
     test_get_longest_all_palindromes()
 
