@@ -186,6 +186,7 @@ def main():
 
     test_is_palindrom()
     test_get_longest_all_palindromes()
-
+    test_cifre_descrescatoare()
+    test_get_longest_digit_count_desc()
 if __name__ == '__main__':
     main()
