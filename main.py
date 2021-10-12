@@ -113,16 +113,21 @@ def test_numar_biti_unu():
 
 
 def get_longest_same_bit_counts(lst: list[int]):
+    '''
+    Problema 11. Determinarea celei mai lungi subsecvente de termeni care au acelasi numar de biti 1
+    Input: O lista de intregi
+    Output: cea mai lunga subsecventa de de termeni care au acelasi numar de biti 1
+    '''
     n = len(lst)
     res = []
     for s in range(n):
         for d in range(s, n):
-            palindrom = True
+            bit = True
             for num in lst[s:d+1]:
                 if is_palindrom(num) == False:
-                    palindrom = False
+                    bit = False
                     break
-            if palindrom:
+            if bit:
                 if d-s+1>len(res):
                     res=lst[s:d+1]
 
@@ -156,6 +161,10 @@ def main():
         else:
             print('Optiune invalida')
 
+
+    test_numar_biti_unu()
+    test_is_palindrom()
+    test_get_longest_all_palindromes()
 
 if __name__ == '__main__':
     main()
