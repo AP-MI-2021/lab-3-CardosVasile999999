@@ -157,16 +157,96 @@ def test_get_longest_digit_count_desc():
 
 
 
+def is_cifre_prime(n):
+    '''
+    functie ajutatoare pentru functia get_longest_prime_digits
+    :return: boolean variable
+    '''
+    while n:
+        c=n%10
+        if c==1:
+            return False
+        elif c==4:
+            return False
+        elif c==6:
+            return False
+        elif c==8:
+            return False
+        elif c==9:
+            return False
+        elif c==0:
+            return False
+
+        n=n//10
+
+        return True
+
+
+def test_is_cifre_prime():
+    '''
+    functie test pentru is_cifre_prime
+    '''
+    assert is_cifre_prime(2357)==True
+    assert is_cifre_prime(2351)==False
+    assert is_cifre_prime(7777)==True
+    assert is_cifre_prime(1468)==False
+    assert is_cifre_prime(5)==True
+    assert is_cifre_prime(4)==False
+    assert is_cifre_prime(89)==False
+
+
+def get_longest_prime_digits(lst: list[int]):
+    '''
+    Problema 13: Functie care determina cea mai lunga subsecventa cu numere care au toate cifrele numere prime
+    Input: lista de intregi
+    Output: Cea mai lunga subsecventa de cu numere care au toate cifrele numere prime
+    '''
+    n = len(lst)
+    res = []
+    for s in range(n):
+        for d in range(s, n):
+            prim = True
+            for num in lst[s:d + 1]:
+                if is_cifre_prime(num) == False:
+                    prim = False
+                    break
+            if prim:
+                if d - s + 1 > len(res):
+                    res = lst[s:d + 1]
+
+    return res
+
+
+def test_get_longest_prime_digits():
+    '''
+    functie test pentru  functia _get_longest_prime_digits
+    '''
+    assert get_longest_prime_digits([2, 3, 5, 1, 4, 6, 23, 25])==[2, 3, 5]
+    assert get_longest_prime_digits([1, 4, 54, 654, 876, 99, 0])==[]
+    assert get_longest_prime_digits([1356, 4, 573, 235, 6, 8, 233, 577, 755, 4, 5, 6,])==[233, 577, 755]
+    assert get_longest_prime_digits([22, 27, 23, 4, 2, 3, 5])==[22, 27, 23]
+    assert get_longest_prime_digits([6, 8, 2, 4, 6, 8, 99, 88, 101])==[2]
+
+
+
 
 
 
 
 def main():
+
+
+
+
+
+
+
     lst = []
     while True:
         print('1. Citire lista: ')
         print('2. Cea mai lunga subsecventa de palindroame')
         print('3. Cea mai lunga subsecventa cu termeni ce au acelasi numar de biti de 1')
+        print('4. Cea mai lunga subsecventa cu numere consecutive din lista care au toate cifrele numere prime')
         print('x. Exit')
         optiune = input('Optiunea: ')
         if optiune == '1':
@@ -177,16 +257,26 @@ def main():
         elif optiune == '3':
             cif = get_longest_digit_count_desc(lst)
             print(cif)
+        elif optiune == '4':
+            cifr = get_longest_prime_digits(lst)
+            print(cifr)
         elif optiune == 'x':
             break
         else:
             print('Optiune invalida')
 
 
-
-    test_is_palindrom()
-    test_get_longest_all_palindromes()
+    test_get_longest_prime_digits()
     test_cifre_descrescatoare()
-    test_get_longest_digit_count_desc()
+    test_get_longest_prime_digits()
+    test_is_cifre_prime()
+    test_get_longest_all_palindromes()
+    test_is_palindrom()
+
+
+
+
+
+
 if __name__ == '__main__':
     main()
