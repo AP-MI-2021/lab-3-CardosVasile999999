@@ -32,7 +32,7 @@ def is_palindrom(n):
         return False
 
 
-def test_is_palindrom(n):
+def test_is_palindrom():
     '''
     Functie de test pentru functia _is_palindrom
     input: n
@@ -71,7 +71,7 @@ def get_longest_all_palindromes(lst: list[int]):
     return res
 
 
-def test_get_longest_all_palindromes(lst: list[int]):
+def test_get_longest_all_palindromes():
     '''
         Functie de test pentru functia _get_longest_all_palindromes
     '''
@@ -117,7 +117,7 @@ def test_cifre_descrescatoare():
     assert cifre_descrescatoare(1)==False
     assert cifre_descrescatoare(32)==True
     assert cifre_descrescatoare(531)==True
-    assert cifre_descrescatoare(69)==True
+    assert cifre_descrescatoare(69)==False
 
 
 def get_longest_digit_count_desc(lst: list[int]):
@@ -222,7 +222,7 @@ def test_get_longest_prime_digits():
     functie test pentru  functia _get_longest_prime_digits
     '''
     assert get_longest_prime_digits([2, 3, 5, 1, 4, 6, 23, 25])==[2, 3, 5]
-    assert get_longest_prime_digits([1, 4, 54, 654, 876, 99, 0])==[]
+    assert get_longest_prime_digits([2, 5, 4, 54, 654, 876, 99, 0])==[2, 5]
     assert get_longest_prime_digits([1356, 4, 573, 235, 6, 8, 233, 577, 755, 4, 5, 6,])==[233, 577, 755]
     assert get_longest_prime_digits([22, 27, 23, 4, 2, 3, 5])==[22, 27, 23]
     assert get_longest_prime_digits([6, 8, 2, 4, 6, 8, 99, 88, 101])==[2]
@@ -266,12 +266,7 @@ def main():
             print('Optiune invalida')
 
 
-    test_get_longest_prime_digits()
-    test_cifre_descrescatoare()
-    test_get_longest_prime_digits()
-    test_is_cifre_prime()
-    test_get_longest_all_palindromes()
-    test_is_palindrom()
+
 
 
 
@@ -279,4 +274,10 @@ def main():
 
 
 if __name__ == '__main__':
+    test_get_longest_prime_digits()
+    test_cifre_descrescatoare()
+    test_get_longest_prime_digits()
+    test_is_cifre_prime()
+    test_get_longest_all_palindromes()
+    test_is_palindrom()
     main()
